@@ -10,8 +10,15 @@ If you use this software, please kindly cite our work:
 ### Building the plugin and running the example
 
 1. Clone or download this repository to your hard drive. In Windows 10, with [git](https://git-scm.com/download/win) installed, open a `git bash` terminal, navigate to your folder of choice and run
+
 ```bash
-$ git clone git@gitlab.com:3dheart/UnityNativeVtkTestPlugin.git
+$ git clone git@gitlab.com:3dheart_public/vtktounity.git
+```
+
+or using ssh
+
+```bash
+$ git clone https://gitlab.com/3dheart_public/vtktounity.git
 ```
 2. Build a modified version of VTK
 	* Follow the [instructions](VtkModifications#vtktounity-plugin-vtk-modifications) in the 'VtkModifications' folder
@@ -47,6 +54,8 @@ Download some example DICOM data and unzip it. To then load the data into our ap
 	* (Also used successfully with Unity 2018.X)
 * VTK
 	* 8.1.0
+* VR
+	* HTC Vive and SteamVR
 
 
 ### What license is the plugin and example shipped under?
