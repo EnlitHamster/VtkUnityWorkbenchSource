@@ -1,0 +1,45 @@
+# ========== Unity Project git ingnore ================================================ #
+
+# =============== #
+# Unity generated #
+# =============== #
+Temp/
+Obj/
+recordings/
+UnityGenerated/
+Library/
+Assets/AssetStoreTools*
+x86_64
+
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+ExportedObj/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*/UnityProject/*.sln
+*.user
+*.unityproj
+*.booproj
+
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
+# ================= #
+# Added by 3D Heart #
+# ================= #
+.vs/
+Packages/
+
