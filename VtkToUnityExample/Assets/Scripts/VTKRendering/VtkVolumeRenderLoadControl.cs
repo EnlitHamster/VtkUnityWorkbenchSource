@@ -170,7 +170,8 @@ public class VtkVolumeRenderLoadControl : VtkVolumeRenderCore
 		{
 			string extension = Path.GetExtension(filepath);
 
-			if (0 == String.Compare(extension, ".dcm", true))
+			if (0 == String.Compare(extension, ".dcm", true) ||
+				0 == String.Compare(extension, "", true))
 			{
 				// Is there a dicom file?
 				// just pass in the folder name to the plugin
