@@ -33,7 +33,7 @@ $ git clone https://gitlab.com/3dheart_public/vtktounity.git
 
 ### Example data
 
-We supply example sample data from a cardiac phantom, available in the folder `UnityNativeVtkTestPlugin\VtkToUnityExample\Data`. You can also use your own data or  download DICOM data from here:
+We supply example sample data from a cardiac phantom, available in the folder `\VtkToUnityExample\Data`. You can also use your own data or  download DICOM data from here:
 
 [http://www.pcir.org/](http://www.pcir.org/)
 
