@@ -5,8 +5,9 @@ using UnityEngine;
 public class UnityCameraClippingPlanes : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
-		Camera camera = GetComponent<Camera>();
+	void Start ()
+    {
+        Camera camera = Camera.main;
 
 		if (camera == null)
 		{

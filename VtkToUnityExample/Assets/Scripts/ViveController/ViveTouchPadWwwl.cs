@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 
 using ThreeDeeHeartPlugins;
 
@@ -11,15 +12,13 @@ public class ViveTouchPadWwwl : MonoBehaviour {
 	[Range(25.0f, 100.0f)]
 	public float TouchpadSensitivity = 50.0f;
 
-	private Vector2 _lastTouchPadPosition;
 	private bool _touchpadDown = false;
 
-	private SteamVR_TrackedObject trackedObj;
-
-	private SteamVR_Controller.Device Controller
-	{
-		get { return SteamVR_Controller.Input((int)trackedObj.index); }
-	}
+    public SteamVR_Action_Boolean VolumeGainContrastOn =
+        SteamVR_Input.GetAction<SteamVR_Action_Boolean>("VolumeGainContrastOn");
+    public SteamVR_Action_Vector2 VolumeGainContrastDelta =
+        SteamVR_Input.GetAction<SteamVR_Action_Vector2>("VolumeGainContrastDelta");
+    public SteamVR_Input_Sources InputSource = SteamVR_Input_Sources.Any;
 
 	public static float Clamp( float value, float min, float max )
 	{
@@ -41,42 +40,54 @@ public class ViveTouchPadWwwl : MonoBehaviour {
 		return null;
 	}
 
-	void Awake()
+    void OnEnable()
 	{
-		trackedObj = GetComponent<SteamVR_TrackedObject>();
+        if (null != VolumeGainContrastDelta && null != VolumeGainContrastOn)
+        {
+            VolumeGainContrastOn.AddOnStateDownListener(OnVolumeGainContrastPressed, InputSource);
+            VolumeGainContrastOn.AddOnStateUpListener(OnVolumeGainContrastReleased, InputSource);
+            VolumeGainContrastDelta.AddOnChangeListener(OnVolumeGainContrastChanged, InputSource);
+        }
 	}
 	
-	// Update is called once per frame
-	void Update ()
+    void OnDisable()
 	{
-		if (null == _volumeRenderGain)
+        if (null != VolumeGainContrastDelta)
 		{
-			return;
-		}
-
-		if (Controller.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
-		{
-			_touchpadDown = true;
-			_lastTouchPadPosition = 
-				(Controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0));
-		}
-		else if (Controller.GetPressUp(SteamVR_Controller.ButtonMask.Touchpad))
-		{
-			_touchpadDown = false;
-		}
-		else if (Controller.GetPress(SteamVR_Controller.ButtonMask.Touchpad) && _touchpadDown)
-		{
-			Vector2 touchpadPosition = (Controller.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0));
-
-			_volumeRenderGain.ChangeWindowLevel(
-				(touchpadPosition.y - _lastTouchPadPosition.y) * TouchpadSensitivity);
-			_volumeRenderGain.ChangeWindowWidth(
-				(touchpadPosition.x - _lastTouchPadPosition.x) * TouchpadSensitivity);
-
-			_lastTouchPadPosition = touchpadPosition;
-		}
-
+            VolumeGainContrastOn.RemoveOnStateDownListener(OnVolumeGainContrastPressed, InputSource);
+            VolumeGainContrastOn.RemoveOnStateUpListener(OnVolumeGainContrastReleased, InputSource);
+            VolumeGainContrastDelta.RemoveOnChangeListener(OnVolumeGainContrastChanged, InputSource);
+        }
 	}
+
+    private void OnVolumeGainContrastPressed(
+        SteamVR_Action_Boolean fromAction,
+        SteamVR_Input_Sources fromSource)
+	{
+		_touchpadDown = true;
+	}
+
+    private void OnVolumeGainContrastReleased(
+        SteamVR_Action_Boolean fromAction,
+        SteamVR_Input_Sources fromSource)
+	{
+		_touchpadDown = false;
+	}
+
+    private void OnVolumeGainContrastChanged(
+        SteamVR_Action_Vector2 fromAction,
+        SteamVR_Input_Sources fromSource,
+        Vector2 axis,
+        Vector2 delta)
+    {
+        if (null == _volumeRenderGain || !_touchpadDown)
+        {
+            return;
+        }
+
+        _volumeRenderGain.ChangeWindowLevel(delta.y * TouchpadSensitivity);
+        _volumeRenderGain.ChangeWindowWidth(delta.x * TouchpadSensitivity);
+    }
 
 	void OnGUI()
 	{

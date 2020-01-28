@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 using System.Linq;
 
 public class ViveControllerToolMove : ViveControllerToolBase {
@@ -88,7 +89,7 @@ public class ViveControllerToolMove : ViveControllerToolBase {
 
         if (!_objectInHand)
         {
-            SteamVR_Controller.Input((int)_trackedObj.index).TriggerHapticPulse(500);
+            StandardHapticBuzz();
         }
 
         if (_colliderStack.Count > 0)
@@ -101,23 +102,23 @@ public class ViveControllerToolMove : ViveControllerToolBase {
         }
     }
 
-	// Update is called once per frame
-	protected override void UpdateImpl()
+    protected override void OnInteractPressedImpl(
+        SteamVR_Action_Boolean fromAction, 
+        SteamVR_Input_Sources fromSource)
     {
-
-        if (Controller.GetHairTriggerDown())
+        if (_collidingObject)
         {
-            if (_collidingObject)
-            {
-                GrabObject();
-            }
+            GrabObject();
         }
-        else if (Controller.GetHairTriggerUp())
+    }
+
+    protected override void OnInteractReleasedImpl(
+        SteamVR_Action_Boolean fromAction, 
+        SteamVR_Input_Sources fromSource)
+    {
+        if (_objectInHand)
         {
-            if (_objectInHand)
-            {
-                ReleaseObject();
-            }
+            ReleaseObject();
         }
     }
 
@@ -143,7 +144,7 @@ public class ViveControllerToolMove : ViveControllerToolBase {
 				SetGameObjectIndicationState(_collidingObject, IndicatorBase.IndicateState.Off);
 				if (ColliderSource.Enter == fromWhere)
 				{
-					SteamVR_Controller.Input((int)_trackedObj.index).TriggerHapticPulse(500);
+                    StandardHapticBuzz();
 				}
 			}
 		}
@@ -155,7 +156,7 @@ public class ViveControllerToolMove : ViveControllerToolBase {
 			SetGameObjectIndicationState(_collidingObject, IndicatorBase.IndicateState.Highlight);
 			if (ColliderSource.Enter == fromWhere)
 			{
-				SteamVR_Controller.Input((int)_trackedObj.index).TriggerHapticPulse(500);
+                StandardHapticBuzz();
 			}
 		}
 	}

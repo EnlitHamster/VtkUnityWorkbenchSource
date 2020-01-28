@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 
 public class ViveControllerToolBase : MonoBehaviour {
 
     public GameObject DefaultIconPrefab;
 
-    protected SteamVR_TrackedObject _trackedObj;
+    public SteamVR_Action_Boolean BooleanAction = 
+        SteamVR_Input.GetAction<SteamVR_Action_Boolean>("InteractSceneObject");
+    public SteamVR_Action_Vibration HapticAction = 
+        SteamVR_Input.GetAction<SteamVR_Action_Vibration>("VibrationHapticFeedback");
+    public SteamVR_Input_Sources InputSource = SteamVR_Input_Sources.Any;
 
     protected GameObject _iconParent;
     protected GameObject _icon;
@@ -19,21 +24,39 @@ public class ViveControllerToolBase : MonoBehaviour {
 		return false;
 	}
 
-    protected SteamVR_Controller.Device Controller
-    {
-        get { return SteamVR_Controller.Input((int)_trackedObj.index); }
-    }
-
     void Awake()
     {
-        _trackedObj = GetComponent<SteamVR_TrackedObject>();
-        var iconParentTransform = _trackedObj.transform.Find("IconParent");
+        var iconParentTransform = this.transform.Find("IconParent");
         if (iconParentTransform)
         {
             _iconParent = iconParentTransform.gameObject;
         }
 
         Activate();
+    }
+
+    protected virtual void OnEnable()
+    {
+        if (null != BooleanAction)
+        {
+            BooleanAction.AddOnStateDownListener(OnInteractPressed, InputSource);
+            BooleanAction.AddOnStateUpListener(OnInteractReleased, InputSource);
+        }
+
+        var steamPoseBehaviour = GetComponentInParent<SteamVR_Behaviour_Pose>();
+        if (null != steamPoseBehaviour)
+        {
+            InputSource = steamPoseBehaviour.inputSource;
+        }
+    }
+
+    protected virtual void OnDisable()
+    {
+        if (null != BooleanAction)
+        {
+            BooleanAction.RemoveOnStateDownListener(OnInteractPressed, InputSource);
+            BooleanAction.RemoveOnStateUpListener(OnInteractReleased, InputSource);
+        }
     }
 
     // to be overridden by derived classes
@@ -80,11 +103,6 @@ public class ViveControllerToolBase : MonoBehaviour {
 
         return null;
     }
-
-	//   // Use this for initialization
-	//   void Start () {
-
-	//}
 
 	public void OnTriggerEnter(Collider other)
 	{
@@ -147,4 +165,50 @@ public class ViveControllerToolBase : MonoBehaviour {
 	{
 
 	}
+
+    private void OnInteractPressed(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource) //) //SteamVR_Action_In actionIn)
+    {
+        if (!_active)
+        {
+            return;
+        }
+
+        OnInteractPressedImpl(fromAction, fromSource);
+    }
+
+    protected virtual void OnInteractPressedImpl(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
+    {
+
+    }
+
+    private void OnInteractReleased(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource) //) //SteamVR_Action_In actionIn)
+    {
+        if (!_active)
+        {
+            return;
+        }
+
+        OnInteractReleasedImpl(fromAction, fromSource);
+    }
+
+    protected virtual void OnInteractReleasedImpl(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
+    {
+
+    }
+
+    protected void StandardHapticBuzz()
+    {
+        float duration = 0.0005f;
+        float frequency = 100.0f;
+        float amplitude = 1.0f;
+        HapticAction.Execute(0, duration, frequency, amplitude, InputSource); // handType);
+    }
+
+    protected void HapticBuzz(float durationS, float frequencyHz, float amplitude)
+    {
+        if (null != HapticAction)
+        {
+            HapticAction.Execute(0, durationS, frequencyHz, amplitude, InputSource); // handType);
+        }
+    }
 }

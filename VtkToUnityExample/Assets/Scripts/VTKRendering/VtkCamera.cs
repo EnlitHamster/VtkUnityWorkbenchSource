@@ -8,7 +8,6 @@ using ThreeDeeHeartPlugins;
 
 public class VtkCamera : MonoBehaviour
 {
-	//public string CameraName = "Main Camera";
 	Camera _camera;
 
 	private CommandBuffer _vtkRenderCommandBuffer;
@@ -16,7 +15,7 @@ public class VtkCamera : MonoBehaviour
 
 	void Start()
 	{
-		_camera = GetComponent<Camera>();
+        _camera = Camera.main;
 
 		_vtkRenderCommandBuffer = new CommandBuffer();
 		_vtkRenderCommandBuffer.name = "Do a vtk render";
