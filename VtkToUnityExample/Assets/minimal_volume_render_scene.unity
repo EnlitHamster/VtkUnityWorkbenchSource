@@ -227,7 +227,7 @@ MonoBehaviour:
   Play: 1
   PlayButton: {fileID: 0}
   TransferFunctionIndex: 1
-  VolumeWindowLevel: 400
+  VolumeWindowLevel: 100
   VolumeWindowWidth: 165
   VolumeOpacityFactor: 1
   VolumeBrightnessFactor: 1
@@ -561,7 +561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DataFolders:
-  - C:\SetThePathToYourDataFolder
+  - Data
   IDataFolder: 0
 --- !u!114 &1646496564
 MonoBehaviour:
