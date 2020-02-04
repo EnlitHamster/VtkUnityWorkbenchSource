@@ -10,7 +10,6 @@ UnityGenerated/
 Library/
 Assets/AssetStoreTools*
 x86_64
-*.meta
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
