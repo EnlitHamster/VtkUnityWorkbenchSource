@@ -14,21 +14,25 @@ If you use this software, please kindly cite our work:
 1. Clone or download this repository to your hard drive. In Windows 10, with [git](https://git-scm.com/download/win) installed, open a `git bash` terminal, navigate to your folder of choice and run
 
 ```bash
-$ git clone git@gitlab.com:3dheart_public/vtktounity.git
+$ git clone https://gitlab.com/3dheart_public/vtktounity.git
 ```
 
 or using ssh
 
 ```bash
-$ git clone https://gitlab.com/3dheart_public/vtktounity.git
+$ git clone git@gitlab.com:3dheart_public/vtktounity.git
 ```
-2. Build a modified version of VTK
-	* Follow the [instructions](VtkModifications#vtktounity-plugin-vtk-modifications) in the 'VtkModifications' folder
-3. Build the plugin
-	* Follow the [instructions](VtkToUnityPlugin#vtktounity-plugin-build-instructions) in the 'VtkToUnityPlugin' folder
-4. Run the example
+
+2. Pull the pre-built VtkToUnity submodule
+
+```bash
+$ cd vtktounity
+$ git submodule update --init
+```
+
+3. Run the example
 	* Open the Unity project folder ['VtkToUnityExample'](VtkToUnityExample#vtktounity-example) in Unity
-	* You will also need some volume data to render
+	* Example volume data is provided, and you can also use your own
 
 
 ### Example data
@@ -58,6 +62,18 @@ Download some example DICOM data and unzip it. To then load the data into our ap
 	* 8.1.0
 * VR
 	* HTC Vive and SteamVR
+
+
+### Building the plugin
+
+You may build the VtkToUnity plugin yourself, e.g. to extend the code and add new functions:
+
+1. Build a modified version of VTK
+	* Follow the [instructions](VtkModifications#vtktounity-plugin-vtk-modifications) in the 'VtkModifications' folder
+2. Build the plugin
+	* Follow the [instructions](VtkToUnityPlugin#vtktounity-plugin-build-instructions) in the 'VtkToUnityPlugin' folder
+
+This will copy the write the updated plugin you build over the one pulled from gitlab.
 
 
 ### What license is the plugin and example shipped under?
