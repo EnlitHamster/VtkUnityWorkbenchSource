@@ -1,24 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+//using UnityEngine.UI;
+using TMPro;
 
 public class DataCounterText : MonoBehaviour
 {
-	private Text _textUi;
+	private TextMeshPro _textUi;
     // Start is called before the first frame update
     void Start()
     {
-		_textUi = GetComponent<Text>();
+		_textUi = GetComponent<TextMeshPro>();
 		UpdateCounterString();
-
 	}
-
-	// Update is called once per frame
-	//void Update()
-	//{
-
-	//}
 
 	public void UpdateCounterString()
 	{
