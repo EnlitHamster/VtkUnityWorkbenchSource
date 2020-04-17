@@ -1,3 +1,4 @@
 [submodule "VtkToUnityExample/Assets/vtktounitybinary"]
 	path = VtkToUnityExample/Assets/vtktounitybinary
 	url = https://gitlab.com/3dheart_public/vtktounitybinary.git
+	branch = b12_fix_ct_rendering
