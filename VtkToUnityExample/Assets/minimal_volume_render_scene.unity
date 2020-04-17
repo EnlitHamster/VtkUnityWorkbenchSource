@@ -231,9 +231,8 @@ MonoBehaviour:
   VolumeWindowWidth: 165
   VolumeOpacityFactor: 1
   VolumeBrightnessFactor: 1
-  RenderGPU: 1
   RenderComposite: 1
-  TargetFramerateOn: 0
+  TargetFramerateOn: 1
   TargetFramerateFps: 125
   LightingOn: 1
 --- !u!114 &1371470678
@@ -255,7 +254,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1869146155848216}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e788619bfef1b284d98e128dcd9118bd, type: 3}
   m_Name: 
@@ -267,7 +266,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1869146155848216}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14d8932a7f3ef09448503be5718456c6, type: 3}
   m_Name: 
@@ -297,7 +296,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1869146155848216}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44f1e7c7446a6e043b0661d83e8e913d, type: 3}
   m_Name: 
@@ -352,7 +351,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -393,7 +392,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1415571845}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.46}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -561,8 +560,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DataFolders:
-  - Data
+  - C:\ImagingData\dicom_testing\tcia\CT\CPTAC-HNSCC\C3L-04844\02-24-2005-CT SOFT
+    TISSUE NECK ENHANCEDNK-16104\601.000000-35 WET NECK AXIAL-60974
   IDataFolder: 0
+  GeneratePaddingMask: 1
+  PaddingValue: -1024
 --- !u!114 &1646496564
 MonoBehaviour:
   m_ObjectHideFlags: 0
