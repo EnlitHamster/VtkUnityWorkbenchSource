@@ -24,13 +24,13 @@ public class VtkVolumeRenderLoadControl : VtkVolumeRenderCore
 	[Range(0, 8)] 
 	public int TransferFunctionIndex = 0;
 
-	private const float _minWindowLevel = -2000.0f;
-	private const float _maxWindowLevel = 2000.0f;
+	private const float _minWindowLevel = -1000.0f;
+	private const float _maxWindowLevel = 1000.0f;
 	[Range(_minWindowLevel, _maxWindowLevel)]
 	public float VolumeWindowLevel = 105.0f;
 
 	private const float _minWindowWidth = 1.0f;
-	private const float _maxWindowWidth = 2000.0f;
+	private const float _maxWindowWidth = 1000.0f;
 	[Range(_minWindowWidth, _maxWindowWidth)]
 	public float VolumeWindowWidth = 150.0f;
 
