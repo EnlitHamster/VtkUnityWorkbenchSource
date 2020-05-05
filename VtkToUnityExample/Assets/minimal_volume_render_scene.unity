@@ -562,7 +562,7 @@ MonoBehaviour:
   DataFolders:
   - Data
   IDataFolder: 0
-  GeneratePaddingMask: 0
+  GeneratePaddingMask: 1
   PaddingValue: 0
 --- !u!114 &1646496564
 MonoBehaviour:
