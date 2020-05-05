@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74b928ffdfbe2d7439815dc12a17f23b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ColorOff: {r: 0.5754717, g: 0.5727572, b: 0.5727572, a: 1}
+  ColorOff: {r: 0.57254905, g: 0.5727572, b: 0.5727572, a: 1}
   ColorHighlight: {r: 1, g: 1, b: 1, a: 1}
   ColorActive: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &4484504413377601010
