@@ -2,3 +2,6 @@
 	path = VtkToUnityExample/Assets/VtkToUnity/vtktounitybinary/vtktounitybinary
 	url = https://gitlab.com/3dheart_public/vtktounitybinary.git
 	branch = b12_fix_ct_rendering
+[submodule "VtkToUnityPlugin"]
+	path = VtkToUnityPlugin
+	url = https://gitlab.com/3dheart_public/vtktounityplugin.git
