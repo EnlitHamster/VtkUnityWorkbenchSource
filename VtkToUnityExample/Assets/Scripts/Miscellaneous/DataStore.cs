@@ -8,6 +8,9 @@ public class DataStore : GenericSingletonClass<DataStore>
 	public string[] DataFolders = new string[1];
 	public int IDataFolder = 0;
 
+	public bool GeneratePaddingMask = false;
+	public int PaddingValue = 0;
+
 	public int NDataFolders
 	{
 		get

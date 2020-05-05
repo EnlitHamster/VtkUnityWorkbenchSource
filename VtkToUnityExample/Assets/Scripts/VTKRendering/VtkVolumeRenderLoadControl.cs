@@ -24,15 +24,15 @@ public class VtkVolumeRenderLoadControl : VtkVolumeRenderCore
 	[Range(0, 8)] 
 	public int TransferFunctionIndex = 0;
 
-	private const float _minWindowLevel = 1.0f;
-	private const float _maxWindowLevel = 500.0f;
-	[Range(_minWindowLevel, _maxWindowLevel)] // better for us
-	public float VolumeWindowLevel = 105.0f; //2048.0f;
+	private const float _minWindowLevel = -1000.0f;
+	private const float _maxWindowLevel = 1000.0f;
+	[Range(_minWindowLevel, _maxWindowLevel)]
+	public float VolumeWindowLevel = 105.0f;
 
 	private const float _minWindowWidth = 1.0f;
-	private const float _maxWindowWidth = 300.0f;
-	[Range(_minWindowWidth, _maxWindowWidth)] // better for us
-	public float VolumeWindowWidth = 150.0f; //16000.0f; //4096.0f;
+	private const float _maxWindowWidth = 1000.0f;
+	[Range(_minWindowWidth, _maxWindowWidth)]
+	public float VolumeWindowWidth = 150.0f;
 
 	[Range(0.01f, 2.0f)] 
 	public float VolumeOpacityFactor = 1.0f;
@@ -40,7 +40,6 @@ public class VtkVolumeRenderLoadControl : VtkVolumeRenderCore
 	[Range(0.01f, 2.0f)] 
 	public float VolumeBrightnessFactor = 1.0f;
 
-	public bool RenderGPU = true;
 	public bool RenderComposite = true;
 	public bool TargetFramerateOn = false;
 	[Range(1, 400)]
@@ -55,7 +54,6 @@ public class VtkVolumeRenderLoadControl : VtkVolumeRenderCore
 	private float _oldVolumeOpacityFactor = 1.0f;
 	private float _oldVolumeBrightnessFactor = 1.0f;
 
-	private bool _oldRenderGPU = true;
 	private bool _oldRenderComposite = true;
 	private bool _oldTargetFramerateOn = false;
 	private int _oldTargetFramerateFps = 200;
@@ -123,9 +121,6 @@ public class VtkVolumeRenderLoadControl : VtkVolumeRenderCore
 
 		VtkToUnityPlugin.SetVolumeIndex(_desiredFrameIndex);
 		_setFrameIndex = _desiredFrameIndex;
-
-		VtkToUnityPlugin.SetRenderGPU(RenderGPU);
-		_oldRenderGPU = RenderGPU;
 
 		VtkToUnityPlugin.SetRenderComposite(RenderComposite);
 		_oldRenderComposite = RenderComposite;
@@ -198,6 +193,11 @@ public class VtkVolumeRenderLoadControl : VtkVolumeRenderCore
 		}
 
 		_nFrames = VtkToUnityPlugin.GetNVolumes();
+
+		if (0 < _nFrames && DataStore.Instance.GeneratePaddingMask)
+		{
+			VtkToUnityPlugin.CreatePaddingMask(DataStore.Instance.PaddingValue);
+		}
 	}
 
 	protected override void CallPluginAtEndOfFramesBody()
@@ -237,12 +237,6 @@ public class VtkVolumeRenderLoadControl : VtkVolumeRenderCore
 			_oldVolumeBrightnessFactor = VolumeBrightnessFactor;
 		}
 
-		if (RenderGPU != _oldRenderGPU)
-		{
-			VtkToUnityPlugin.SetRenderGPU(RenderGPU);
-			_oldRenderGPU = RenderGPU;
-		}
-
 		if (RenderComposite != _oldRenderComposite)
 		{
 			VtkToUnityPlugin.SetRenderComposite(RenderComposite);
@@ -266,8 +260,6 @@ public class VtkVolumeRenderLoadControl : VtkVolumeRenderCore
 			VtkToUnityPlugin.SetLightingOn(LightingOn);
 			_oldLightingOn = LightingOn;
 		}
-
-		VtkToUnityPlugin.SetVolumeWWWL(VolumeWindowWidth, VolumeWindowLevel);
 
 		base.CallPluginAtEndOfFramesBody();
 	}
