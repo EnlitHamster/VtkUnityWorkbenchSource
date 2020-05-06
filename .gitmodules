@@ -5,3 +5,6 @@
 [submodule "VtkToUnityPlugin"]
 	path = VtkToUnityPlugin
 	url = https://gitlab.com/3dheart_public/vtktounityplugin.git
+[submodule "VtkToUnityExample/Assets/VtkToUnity/VtkToUnityAssets"]
+	path = VtkToUnityExample/Assets/VtkToUnity/VtkToUnityAssets
+	url = https://gitlab.com/3dheart_public/vtktounityassets.git
