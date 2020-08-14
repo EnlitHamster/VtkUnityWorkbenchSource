@@ -49,7 +49,7 @@ We supply example sample data from a cardiac phantom, available in the folder `\
 [http://www.pcir.org/](http://www.pcir.org/)
 
 Download some example DICOM data and unzip it. To then load the data into our application:
-1. In the `Project` tab, click on `Assets`
+1. In the `Project` tab, navigate to `Assets\VtkToUnity\VtkToUnityAssets\Scenes`
 2. Double click on `minimal_volume_render_scene.unity`. The scene will load.
 3. In the `Hierarchy` panel, select the `StaticSceneData` object
 4. In the object inspector view, set the path to the folder where the data is. Currently, the data can be in plain DICOM, mhd/raw, or mhd formats.
@@ -63,7 +63,7 @@ Download some example DICOM data and unzip it. To then load the data into our ap
 * OS
 	* Windows 10
 * Unity
-	* Release using Unity 2019.2.0f1
+	* Release using Unity 2019.3.5f1
 	* (Also used successfully with Unity 2018.X)
 * VTK
 	* 8.1.0
@@ -76,9 +76,9 @@ Download some example DICOM data and unzip it. To then load the data into our ap
 You may build the VtkToUnity plugin yourself, e.g. to extend the code and add new functions:
 
 1. Build a modified version of VTK
-	* Follow the [instructions](VtkModifications#vtktounity-plugin-vtk-modifications) in the 'VtkModifications' folder
+	* Follow the [instructions](https://gitlab.com/3dheart_public/vtktounityplugin/-/tree/master/VtkModifications) in the 'VtkToUnityPlugin\VtkModifications' folder
 2. Build the plugin
-	* Follow the [instructions](VtkToUnityPlugin#vtktounity-plugin-build-instructions) in the 'VtkToUnityPlugin' folder
+	* Follow the [instructions](https://gitlab.com/3dheart_public/vtktounityplugin) in the 'VtkToUnityPlugin' folder
 
 This will copy the write the updated plugin you build over the one pulled from gitlab.
 
