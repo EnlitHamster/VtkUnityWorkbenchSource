@@ -23,17 +23,24 @@ or using ssh
 $ git clone git@gitlab.com:3dheart_public/vtktounity.git
 ```
 
-2. Pull the pre-built VtkToUnity submodule
+2. Pull the pre-built VtkToUnity submodule, assets etc.
 
 ```bash
 $ cd vtktounity
 $ git submodule update --init
 ```
 
-3. Run the example
+3. Run the minimal example
 	* Open the Unity project folder ['VtkToUnityExample'](VtkToUnityExample#vtktounity-example) in Unity
+	* Open the `minimal_volume_render_scene` (in `Assets\VtkToUnity\VtkToUnityAssets\Scenes`) 
+	* Check `Project Settings\XR Settings\Virtual Reality SDKs` is `None`
+	* Run the scene
 	* Example volume data is provided, and you can also use your own
 
+4. Run the VR example
+	* As 3. above but
+	* Open the `example_vr_volume_render_scene` (in `Assets\VtkToUnity\VtkToUnityAssets\Scenes`) 
+	* Check `Project Settings\XR Settings\Virtual Reality SDKs` is `OpenVR`
 
 ### Example data
 
