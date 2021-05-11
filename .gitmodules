@@ -1,12 +1,12 @@
 [submodule "VtkToUnityExample/Assets/vtktounitybinary"]
 	path = VtkToUnityExample/Assets/VtkToUnity/vtktounitybinary
-	url = https://gitlab.com/3dheart_public/vtktounitybinary.git
-	branch = master
+	url = https://github.com/EnlitHamster/VtkUnityWorkbenchBinaries.git
+	branch = main
 [submodule "VtkToUnityPlugin"]
 	path = VtkToUnityPlugin
-	url = https://gitlab.com/3dheart_public/vtktounityplugin.git
-	branch = master
+	url = https://github.com/EnlitHamster/VtkUnityWorkbenchPlugin.git
+	branch = main
 [submodule "VtkToUnityExample/Assets/VtkToUnity/VtkToUnityAssets"]
 	path = VtkToUnityExample/Assets/VtkToUnity/VtkToUnityAssets
-	url = https://gitlab.com/3dheart_public/vtktounityassets.git
-	branch = master
+	url = https://github.com/EnlitHamster/VtkUnityWorkbenchAssets.git
+	branch = main
