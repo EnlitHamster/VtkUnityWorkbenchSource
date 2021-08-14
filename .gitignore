@@ -43,3 +43,9 @@ Thumbs.db
 .vs/
 Packages/
 
+# ========================== #
+# Added by VtkUnityWorkbench #
+# ========================== #
+VtkToUnityExample/venv/
+VtkToUnityExample/__pycache__/
+VtkToUnityExample/*.log
