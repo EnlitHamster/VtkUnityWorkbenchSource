@@ -49,3 +49,6 @@ Packages/
 VtkToUnityExample/venv/
 VtkToUnityExample/__pycache__/
 VtkToUnityExample/*.log
+VtkToUnityExample/*.raw
+VtkToUnityExample/*.csv
+VtkToUnityExample/*.dump

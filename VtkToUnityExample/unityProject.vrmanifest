@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.nativerenderingpluginexample.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "D:\\Users\\Sandro Massa\\Code\\vtktounity\\VtkToUnityExample\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "action_manifest_path": "D:\\Users\\Sandro Massa\\Code\\VtkUnityWorkbench\\Source\\VtkToUnityExample\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
           "name": "Native Rendering Plugin Example [Testing]"
